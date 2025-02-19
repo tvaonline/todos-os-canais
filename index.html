@@ -1,10 +1,156 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrossel de Canais</title>
+    <title>TVs e Câmeras Ao Vivo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .menu-container {
+            background: #9BD239;
+            padding: 5px 0;
+            position: relative;
+        }
+        .logo {
+            text-align: center;
+            padding: 10px;
+            background: #444;
+        }
+        .logo img {
+            max-width: 200px;
+            width: 200px;
+            height: 105px;
+            object-fit: cover;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+			height: 80px;
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-item:hover {
+            border-color: white;
+            color: #ccc;
+        }
+        .search-box {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #666;
+            background: #444;
+            color: white;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .channel-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .channel-info img {
+            width: 80px;
+            height:auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .video-player {
+            margin-bottom: 20px;
+        }
+        .suggested-channels {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 25px;
+			max-width: 100%;
+			
+        }
+        .suggested-channels .channel {
+            text-align: center;
+			margin: 7px;
+			overflow: hidden;
+        }
+        .suggested-channels img {
+            width: 150px;
+            height: 150px;
+			object-fit: cover;
+            border-radius: 7px;
+			margin-bottom: 7px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+			
+			
+        }
+		
+	
+            }
+			
+			.total-de-canais, .total-de-cameras {
+    width: 50px;
+    height: 50px;
+    background-color: #9BD239;
+    border-radius: 25px; /* Para deixar os cantos arredondados */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease-in-out;
+    margin: 10px; /* Para dar um espaçamento entre as divs */
+}
+
+.total-de-canais:hover, .total-de-cameras:hover {
+    box-shadow: 0 0 10px #9BD239;
+        }
+			
+		
+    
         .carousel-container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -63,10 +209,7 @@
         .arrow-left { left: 20px; }
         .arrow-right { right: 20px; }
 
-        @media (max-width: 768px) {
-            .carousel-slide {
-                min-width: 50%;
-            }
+       
         }
 
         @media (max-width: 480px) {
@@ -76,12 +219,38 @@
         }
 
         .section {
-            margin-bottom: 2rem;
-        }
+			margin-bottom: 2rem;}	
+			
+			
     </style>
 </head>
 <body>
-    <div class="carousel-container">
+    <div class="menu-container">
+        <div class="logo">
+            <img src="imagens-canais-incio/lodositegif.gif" alt="Logo">
+        </div>
+        <nav>
+            <div class="nav-left">
+                <a href="https://tvaonline.github.io/inicio/" class="nav-item"><strong>Home</strong></a>
+                <a href="#" class="nav-item"><strong>Canais</strong></a>
+                <a href="#" class="nav-item"><strong>Rádios</strong></a>
+                <a href="#" class="nav-item"><strong>Câmeras</strong></a>
+                <a href="#" class="nav-item"><strong>TV Ao Vivo</strong></a>
+            </div>
+            <div class="nav-right">
+                <input type="text" class="search-box" placeholder="Buscar canais...">
+                <a href="#" class="nav-item">Entrar</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-content">
+		
+		<h2 align="center">TODOS OS CANAIS</h2>
+
+    
+
+	<div class="carousel-container">
         <div class="carousel-arrow arrow-left" onclick="moveSlide(-1)">❮</div>
         <div class="section">
             <div class="carousel-slider" id="carousel-slider-1">
@@ -219,6 +388,7 @@
 				
 				 <div class="carousel-slide">
                    <div class="channel-card">
+
                         <img src="imagens-canais-incio/grjngo.jpg" alt="Canal 2" class="channel-img">
                         <div class="channel-name">GRJNGO</div>
                     </div>
@@ -248,6 +418,63 @@
                 slider.style.transform = `translateX(-${slideIndices[index] * slideWidth}px)`;
             });
         }
+    </script>
+
+   <h4 align="center">DESENVOLVIDO POR - MARLON RODRIGUES</h4>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+				
+				    <div class="total-de-canais">
+    </div>
+   <div class="total-de-canais">
+	   <h3>Estatísticas</h3>
+	   <p>Total de Canais: <span id="total-canais">15</span></p>
+    </div>
+    <div class="total-de-cameras">
+        <p>Total de Câmeras: <span id="total-cameras">8</span></div>  
+    
+    		
+		  </div>	 
+        </div>
+    </footer>
+    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('player');
+            const source = video.querySelector('source').src;
+            
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(source);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    video.play();
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = source;
+                video.addEventListener('loadedmetadata', () => {
+                    video.play();
+                });
+            }
+
+            const player = new Plyr(video, {
+                captions: { active: true }
+            });
+			
+			
+        });
     </script>
 </body>
 </html>
